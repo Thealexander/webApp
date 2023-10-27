@@ -1,1 +1,12 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+  <mat-sidenav #menu role="navigation">
+    <app-menu-list (menuToogle)="menu.toggle()"></app-menu-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-barra (menuToogle)="menu.toggle()"></app-barra>
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

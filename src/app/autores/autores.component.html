@@ -1,0 +1,43 @@
+
+<div fxLayoutAlign="center center">
+  <mat-form-field fxFlex="60%">
+    <input
+      type="text"
+      matInput
+      (keyup)="hacerFiltro($event)"
+      placeholder="Ingrese termino de busqueda"
+    />
+  </mat-form-field>
+</div>
+
+<mat-table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="nombre">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>nombre Autor</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      {{ element.nombre }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="apellido">
+    <mat-header-cell *matHeaderCellDef mat-sort-header
+      >Apellidos</mat-header-cell
+    >
+    <mat-cell *matCellDef="let element">
+      {{ element.apellido }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="gradoAcademico">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Grado Academico</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      {{ element.gradoAcademico }}
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="desplegarColumnas"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: desplegarColumnas"></mat-row>
+</mat-table>
+<mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+<!-- <button mat-fab id="btn-add" color= "warn" (click)="OpenDialog()">
+  <mat-icon  >add</mat-icon>
+</button> -->

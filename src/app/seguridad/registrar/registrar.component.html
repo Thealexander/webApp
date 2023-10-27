@@ -1,0 +1,92 @@
+<section>
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    #f="ngForm"
+    (ngSubmit)="registrarUsuario(f)"
+    fxLayoutGap="10px"
+  >
+    <mat-form-field>
+      <mat-label> Ingrese un Nombre</mat-label>
+      <input
+        type="text"
+        ngModel
+        name="nombre"
+        required
+        placeholder="Ingrese Nombre"
+        matInput
+      />
+      <mat-error>Debe ingresar un nombre</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label> Ingrese Apellidos</mat-label>
+      <input
+        type="text"
+        ngModel
+        name="apellido"
+        required
+        placeholder="Ingrese Apellido"
+        matInput
+      />
+      <mat-error>Debe ingresar un apellido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label> Ingrese su UserName</mat-label>
+      <input
+        type="text"
+        ngModel
+        name="userName"
+        required
+        placeholder="balexg_17"
+        matInput
+      />
+      <mat-error>Debe ingresar un UserName Valido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label> Ingrese un email Valido </mat-label>
+      <input
+        type="email"
+        placeholder="alex@test.com"
+        ngModel
+        name="email"
+        email
+        required
+        #emailInput="ngModel"
+        matInput
+      />
+      <mat-error *ngIf="emailInput.hasError('required')"
+        >el email no puede estar vacio</mat-error
+      >
+      <mat-error *ngIf="!emailInput.hasError('required')"
+        >Email invalido</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field hintLabel="Password debe tener minimo 7 caracteres">
+      <mat-label> Ingrese un Password </mat-label>
+      <input
+        type="password"
+        matInput
+        placeholder="ingresa una contrasena"
+        ngModel
+        name="password"
+        password
+        required
+        minlength="7"
+      />
+      <mat-error>Minimo 7 caracteres</mat-error>
+    </mat-form-field>
+
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="f.invalid"
+    >
+      Guardar
+    </button>
+  </form>
+</section>
