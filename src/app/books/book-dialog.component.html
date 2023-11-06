@@ -38,10 +38,11 @@
             <mat-select
               [(ngModel)]="selectAutor"
               name="autor"
-              (selectionChange)="selected($event)"
-            >
-              <mat-option *ngFor="let autr of autores" value="autr.autorId">
-                {{ autr.nombre + " " + autr.apellido }}
+              (selectionChange)="selected($event)">
+              <mat-option *ngFor="let autr of autores" [value]="autr.id">
+
+                {{ autr.nombre + ' ' + autr.apellido }}
+
               </mat-option>
             </mat-select>
             <mat-error>Ingrese el Autor del libro</mat-error>

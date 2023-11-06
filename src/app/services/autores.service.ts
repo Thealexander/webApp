@@ -1,26 +1,30 @@
-import { Injectable } from "@angular/core";
-import { Autor } from "../models/autor.model";
+import { Injectable } from '@angular/core';
+import { Autor } from '../models/autor.model';
+import { environment } from 'src/environment/environment';
+import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class AutoresService {
-  private autoresLista: Autor[] = [
-    {
-      autorId: 1,
-      nombre: "Alexander",
-      apellido: "Montenegro",
-      gradoAcademico: "Ingeniero en Sistemas",
-    },
-    {
-      autorId: 2,
-      nombre: "Alejandro",
-      apellido: "Gaitan",
-      gradoAcademico: "Ingeniero en Computacion",
-    },
-  ];
+  baseUrl = environment.baseUrl;
+  private autoresLista: Autor[] = [];
+  private autoresSubject = new Subject<Autor[]>();
+
+  constructor(private http: HttpClient) {}
 
   obtenerAutores() {
-    return this.autoresLista.slice();
+    this.http
+      .get<Autor[]>(this.baseUrl + 'api/LibreriaAutor')
+      .subscribe((data) => {
+        this.autoresLista = data;
+        this.autoresSubject.next([...this.autoresLista]);
+      });
+  }
+
+  obtenerActualListener() {
+    return this.autoresSubject.asObservable();
   }
 }
+//db.Libro.update({},{$set:{autor:{_id:'', nombreCompleto:''}}}, false, true)

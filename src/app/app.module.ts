@@ -20,12 +20,12 @@ import { MenuListComponent } from './nav/menu-list/menu-list.component';
 
 import { SeguridadService } from './services/seguridad.service';
 import { BooksComponent } from './books/books.component';
-import { BooksService } from './services/books.service';
+
 import { BookNuevoComponent } from './books/book-dialog.component';
 
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { AutoresComponent } from './autores/autores.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -49,10 +49,11 @@ import { AutoresComponent } from './autores/autores.component';
     MaterialModule,
     FlexLayoutModule,
     MatDialogModule,
+    HttpClientModule,
   ],
   providers: [
     SeguridadService,
-    BooksService,
+
     { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
   ],
   bootstrap: [AppComponent],

@@ -9,7 +9,8 @@
   </mat-form-field>
 </div>
 
-<mat-table [dataSource]="dataSource" matSort>
+<mat-table [dataSource]="dataSource" matSort
+(matSortChange)="ordenarColumna($event)">
   <ng-container matColumnDef="titulo">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Titulo</mat-header-cell>
     <mat-cell *matCellDef="let element">
@@ -29,7 +30,7 @@
   <ng-container matColumnDef="autor">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Autor</mat-header-cell>
     <mat-cell *matCellDef="let element">
-      {{ element.autor }}
+      {{ element.autor.nombreCompleto }}
     </mat-cell>
   </ng-container>
 
@@ -43,7 +44,13 @@
   <mat-header-row *matHeaderRowDef="desplegarColumnas"></mat-header-row>
   <mat-row *matRowDef="let row; columns: desplegarColumnas"></mat-row>
 </mat-table>
-<mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
-<button mat-fab id="btn-add" color= "warn" (click)="OpenDialog()">
-  <mat-icon  >add</mat-icon>
+<mat-paginator
+  (page)="eventPaginador($event)"
+  #paginacion
+  [pageSize]="librosPorPagina"
+  [pageSizeOptions]="paginaCombo"
+  [length]="totalLibros"
+></mat-paginator>
+<button mat-fab id="btn-add" color="warn" (click)="OpenDialog()">
+  <mat-icon>add</mat-icon>
 </button>
